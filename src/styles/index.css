@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Chivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #be5504;
+  --color-secondary: #f3edd9;
+}
+body {
+  color: white;
+  accent-color: var(--color-primary);
+  background-color: var(--color-primary);
+  font-optical-sizing: auto;
+}
+#home {
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+  height: 100%;
+}
+.font-secondary {
+  font-family: 'Chivo', sans-serif;
+}
+.text-primary {
+  color: var(--color-primary);
+}
+.bg-primary {
+  background-color: var(--color-primary);
+}
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+.indicators {
+  /* position: absolute; */
+}
+.indicators li {
+  margin: 0 0.3rem !important;
+}
