@@ -1,7 +1,7 @@
-const TextHTML = ({ text }) => {
+const TextHTML = ({ text }: { text: string }) => {
   return (
     <div
-      className='fade-in lg:text-xl text-wrap'
+      className='fade-in text-wrap'
       dangerouslySetInnerHTML={{ __html: text }}
     />
   )

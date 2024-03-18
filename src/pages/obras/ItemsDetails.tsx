@@ -14,7 +14,7 @@ const Item = ({ data, setCurrentImage }) => {
           alt={data.title}
         />
       </div>
-      <div className='text-sm font-secondary'>{data.title}</div>
+      <div className='text-sm font-secondary'>{data.text}</div>
     </article>
   )
 }

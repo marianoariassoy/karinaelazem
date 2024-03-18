@@ -8,7 +8,7 @@ const Index = () => {
     const body = document.querySelector('body')
     body?.classList.add('bg-secondary')
     return () => body?.classList.remove('bg-secondary')
-  })
+  }, [])
 
   return (
     <Layout>

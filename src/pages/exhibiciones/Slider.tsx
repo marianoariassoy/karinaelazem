@@ -1,16 +1,17 @@
 import { Slide } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css'
 import Image from '../../components/Image'
+import useFetch from '../../hooks/useFetch'
+import Loader from '../../components/Loader'
+import { useDataContext } from '../../context/useDataContext'
 
-interface Props {
-  data: {
-    id: number
-    image: string
-    title: string
-  }[]
-}
+const Slider = ({ id }) => {
+  const { lan } = useDataContext()
+  const { data, loading } = useFetch(`/imagenes/${id}/${lan}`)
 
-const Slider = ({ data }: Props) => {
+  if (loading) {
+    return <Loader />
+  }
   const sliderProperties = {
     autoplay: true,
     transitionDuration: 250,
@@ -23,7 +24,10 @@ const Slider = ({ data }: Props) => {
   return (
     <Slide {...sliderProperties}>
       {data.map(item => (
-        <div key={item.id}>
+        <div
+          key={item.id}
+          className='aspect-[4/5] lg:aspect-[5/4]'
+        >
           <Image
             src={item.image}
             alt={item.title}

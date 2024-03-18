@@ -1,9 +1,9 @@
-import SyncLoader from 'react-spinners/SyncLoader'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 const Loader = () => {
   return (
     <div className='h-screen w-screen flex items-center justify-center'>
-      <SyncLoader />
+      <ClipLoader />
     </div>
   )
 }
