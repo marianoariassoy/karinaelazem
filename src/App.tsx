@@ -27,7 +27,7 @@ function App() {
         component={Obras}
       />
       <Route
-        path='/obras/:id'
+        path='/obras/:obra'
         component={ObrasDetalles}
       />
       <Route

@@ -26,9 +26,9 @@ const FormContacto = () => {
   const onSubmit = (data: Inputs) => {
     setSending(true)
     const sender = {
-      to: 'informes@wom-latam.com',
-      from: 'informes@wom-latam.com',
-      from_name: 'WOM Latam',
+      to: 'karielazem@gmail.com',
+      from: 'karielazem@gmail.com',
+      from_name: 'Karina El Azem',
       subject: 'Contacto'
     }
 

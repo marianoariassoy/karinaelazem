@@ -8,10 +8,15 @@ import { useDataContext } from '../../context/useDataContext'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 
+interface Data {
+  obra: number
+}
+
 const Index = () => {
   const { lan } = useDataContext()
-  const { id } = useParams()
-  const { data, loading } = useFetch(`/obras/${id}/${lan}`)
+  const { obra } = useParams() as Data
+  const { data, loading } = useFetch(`/obras/${obra}/${lan}`)
+
   const [currentImage, setCurrentImage] = useState(null)
   const [currentIndex, setcurrentIndex] = useState(0)
 
