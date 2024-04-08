@@ -24,10 +24,7 @@ const Slider = ({ id }) => {
   return (
     <Slide {...sliderProperties}>
       {data.map(item => (
-        <div
-          key={item.id}
-          className='aspect-[4/5] lg:aspect-[5/4]'
-        >
+        <div key={item.id}>
           <Image
             src={item.image}
             alt={item.title}

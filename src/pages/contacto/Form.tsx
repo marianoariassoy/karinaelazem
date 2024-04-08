@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-import Loader from '../../components/Loader'
+import ClipLoader from 'react-spinners/ClipLoader'
 import { useDataContext } from '../../context/useDataContext'
 
 interface Inputs {
@@ -32,7 +32,7 @@ const FormContacto = () => {
       subject: 'Contacto'
     }
 
-    axios.post(' ', { ...data, ...sender }).then(data => {
+    axios.post('https://karinaelazem.com/backend/send-email.php', { ...data, ...sender }).then(data => {
       if (data.data === 'success') {
         setSended(true)
         setSending(false)
@@ -60,7 +60,7 @@ const FormContacto = () => {
       email: 'E-mail',
       message: 'Mensaje',
       error: 'Se produjo un error al enviar el mensaje',
-      success: '¡Tu mensaje fue enviado! Gracias por contactarte con conmigo.',
+      success: '¡Tu mensaje fue enviado! Gracias por contactarte conmigo.',
       send: 'Enviar',
       required: 'Por favor completá este campo'
     }
@@ -106,7 +106,7 @@ const FormContacto = () => {
             <div className='flex justify-end'>
               {sending ? (
                 <div className='h-14'>
-                  <Loader />
+                  <ClipLoader />
                 </div>
               ) : (
                 <button

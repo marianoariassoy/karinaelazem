@@ -35,7 +35,9 @@ main {
   background-color: var(--color-secondary);
 }
 .indicators {
-  /* position: absolute; */
+  position: absolute;
+  top: 15px;
+  left: 10px;
 }
 .indicators li {
   margin: 0 0.3rem !important;

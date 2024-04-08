@@ -40,6 +40,12 @@ const Index = () => {
                   <div className='flex-1'>
                     <h2 className='italic font-bold'>{publication.title}</h2>
                     <div className='whitespace-break-spaces font-secondary text-sm'>{publication.text}</div>
+                    <a
+                      href='mailto:karielazem@gmail.com'
+                      className='font-secondary bg-white text-primary p-2 inline-block hover:bg-black'
+                    >
+                      ADQUIRIRLO
+                    </a>
                   </div>
                 </div>
               </div>

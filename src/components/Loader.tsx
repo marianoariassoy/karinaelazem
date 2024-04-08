@@ -1,9 +1,9 @@
-import ClipLoader from 'react-spinners/ClipLoader'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 const Loader = () => {
   return (
     <div className='h-screen w-screen flex items-center justify-center'>
-      <ClipLoader />
+      <BeatLoader />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import ClipLoader from 'react-spinners/ClipLoader'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 interface Props {
   src: string
@@ -19,7 +19,7 @@ const ImageComponent = ({ src, alt }: Props) => {
 
   return isLoading ? (
     <div className='w-full h-full flex items-center justify-center'>
-      <ClipLoader />
+      <BeatLoader />
     </div>
   ) : (
     <img
