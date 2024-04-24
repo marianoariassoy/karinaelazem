@@ -15,7 +15,7 @@ const NavMobile = () => {
 
   return (
     <nav
-      className='nav-mobile fixed top-0 left-0 h-screen bg-black/10 w-screen backdrop-blur fade-in hidden z-50'
+      className='nav-mobile fixed top-0 left-0 h-screen bg-black/40 w-screen backdrop-blur fade-in hidden z-50'
       onClick={CloseMenu}
     >
       <div className='w-full h-full items-center justify-center flex'>

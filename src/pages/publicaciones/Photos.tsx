@@ -8,7 +8,7 @@ const Photos = ({ id }) => {
   const { data, loading } = useFetch(`/imagenes/${id}/${lan}`)
 
   return (
-    <div className='w-full m-auto max-w-7xl grid grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-3 pb-6 px-6'>
+    <div className='w-full m-auto max-w-7xl grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-3 pb-6 px-6'>
       {loading ? (
         <Loader />
       ) : (

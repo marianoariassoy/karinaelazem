@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'wouter'
+import { Link, useParams } from 'wouter'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import Layout from '../../layout/Layout'
 import Title from '../../components/Title'
 import Item from './ItemsDetails'
@@ -7,6 +8,7 @@ import Modal from './Modal'
 import { useDataContext } from '../../context/useDataContext'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
+import { Back } from '../../components/icons'
 
 interface Data {
   obra: number
@@ -16,6 +18,7 @@ const Index = () => {
   const { lan } = useDataContext()
   const { obra } = useParams() as Data
   const { data, loading } = useFetch(`/obras/${obra}/${lan}`)
+  const { data: images, loading: imagesLoading } = useFetch(`/imagenes/${obra}/${lan}`)
 
   const [currentImage, setCurrentImage] = useState(null)
   const [currentIndex, setcurrentIndex] = useState(0)
@@ -27,22 +30,22 @@ const Index = () => {
   }, [])
 
   const handelNext = () => {
-    if (data)
-      if (currentIndex === data.length - 1) {
-        setCurrentImage(data[0].image)
+    if (images)
+      if (currentIndex === images.length - 1) {
+        setCurrentImage({ image: images[0].image, text: images[0].text })
         setcurrentIndex(0)
       } else {
-        setCurrentImage(data[currentIndex + 1].image)
+        setCurrentImage({ image: images[currentIndex + 1].image, text: images[currentIndex + 1].text })
         setcurrentIndex(currentIndex + 1)
       }
   }
   const handelPrev = () => {
-    if (data)
+    if (images)
       if (currentIndex === 0) {
-        setCurrentImage(data[data.length - 1].image)
-        setcurrentIndex(data.length - 1)
+        setCurrentImage(images[images.length - 1].image)
+        setcurrentIndex(images.length - 1)
       } else {
-        setCurrentImage(data[currentIndex - 1].image)
+        setCurrentImage(images[currentIndex - 1].image)
         setcurrentIndex(currentIndex - 1)
       }
   }
@@ -56,18 +59,31 @@ const Index = () => {
         />
       )}
 
-      <section className='w-full m-auto max-w-7xl px-6 py-12 grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 text-black'>
-        {loading ? (
-          <Loader />
-        ) : (
-          data.map(item => (
-            <Item
-              key={item.id}
-              data={item}
-              setCurrentImage={setCurrentImage}
-            />
-          ))
-        )}
+      <section className='w-full m-auto max-w-7xl px-6 py-12'>
+        <div className='flex justify-end pb-6 '>
+          <Link href='/obras'>
+            <a className='text-primary hover:text-black'>
+              <Back />
+            </a>
+          </Link>
+        </div>
+        <div className=' text-black'>
+          <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+            <Masonry gutter='1rem'>
+              {imagesLoading ? (
+                <Loader />
+              ) : (
+                images.map(item => (
+                  <Item
+                    key={item.id}
+                    data={item}
+                    setCurrentImage={setCurrentImage}
+                  />
+                ))
+              )}
+            </Masonry>
+          </ResponsiveMasonry>
+        </div>
       </section>
       {currentImage && (
         <Modal

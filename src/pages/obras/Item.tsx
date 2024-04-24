@@ -13,7 +13,7 @@ const Item = ({ data }) => {
           alt={data.title}
         />
       </div>
-      <div className='text-sm font-secondary'>{data.title}</div>
+      <div className='text-sm font-secondary mb-3'>{data.title}</div>
     </article>
   )
 }

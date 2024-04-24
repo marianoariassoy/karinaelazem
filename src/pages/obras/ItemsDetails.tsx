@@ -1,4 +1,5 @@
 import Image from '../../components/Image'
+import HTML from '../../components/useHTML'
 
 const Item = ({ data, setCurrentImage }) => {
   return (
@@ -6,7 +7,7 @@ const Item = ({ data, setCurrentImage }) => {
       <div className='relative'>
         <div
           className='absolute h-full w-full z-10 bg-primary mix-blend-multiply top-0 left-0 opacity-0 hover:opacity-80 transition-opacity cursor-pointer'
-          onClick={() => setCurrentImage(data.image)}
+          onClick={() => setCurrentImage({ image: data.image, text: data.text })}
         ></div>
 
         <Image
@@ -14,7 +15,9 @@ const Item = ({ data, setCurrentImage }) => {
           alt={data.title}
         />
       </div>
-      <div className='text-sm font-secondary'>{data.text}</div>
+      <div className='text-md mb-3'>
+        <HTML text={data.title} />
+      </div>
     </article>
   )
 }

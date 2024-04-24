@@ -42,7 +42,7 @@ const Index = () => {
                     <div className='whitespace-break-spaces font-secondary text-sm'>{publication.text}</div>
                     <a
                       href='mailto:karielazem@gmail.com'
-                      className='font-secondary bg-white text-primary p-2 inline-block hover:bg-black'
+                      className='font-secondary bg-white text-primary text-sm p-2 mt-6 mb-6 inline-block hover:bg-black'
                     >
                       ADQUIRIRLO
                     </a>

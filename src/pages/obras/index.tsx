@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
+import { Link } from 'wouter'
 import Layout from '../../layout/Layout'
-import Title from '../../components/Title'
 import Item from './Item'
 import { useDataContext } from '../../context/useDataContext'
 import useFetch from '../../hooks/useFetch'
+import { menu } from '../../components/data'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 const Index = () => {
   const { lan } = useDataContext()
@@ -17,18 +19,35 @@ const Index = () => {
 
   return (
     <Layout>
-      <Title
-        pos={1}
-        title=''
-      />
-      <section className='w-full m-auto max-w-7xl px-6 py-12 grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 text-black'>
-        {!loading &&
-          data.map(item => (
-            <Item
-              key={item.id}
-              data={item}
-            />
-          ))}
+      <section className='border-b border-white bg-primary'>
+        <div className='w-full m-auto max-w-7xl px-6 flex items-center'>
+          <div className='w-1/2 lg:w-1/4 border-r border-white min-h-14 h-full flex items-center justify-end px-6'>
+            <h1 className='font-secondary text-xl lg:text-3xl'>{menu[lan][1].title}</h1>
+          </div>
+          <div className='pl-6 py-2 w-full flex-1 font-secondary text-sm flex items-center gap-x-3 flex-wrap'>
+            {!loading &&
+              data.map(item => (
+                <div key={item.id}>
+                  <Link href={`/obras/${item.id}`}>
+                    <a className='hover:underline'>{item.title}</a>
+                  </Link>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+      <section className='w-full m-auto max-w-7xl px-6 py-12 text-black'>
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+          <Masonry gutter='1rem'>
+            {!loading &&
+              data.map(item => (
+                <Item
+                  key={item.id}
+                  data={item}
+                />
+              ))}
+          </Masonry>
+        </ResponsiveMasonry>
       </section>
     </Layout>
   )
