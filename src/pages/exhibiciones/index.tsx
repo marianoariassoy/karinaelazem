@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
 import Layout from '../../layout/Layout'
 import { menu } from '../../components/data'
-import Slider from './Slider'
 import useFetch from '../../hooks/useFetch'
-import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
+import Exhibition from './Exhibition'
 
 const Index = () => {
   const { lan } = useDataContext()
   const { data, loading } = useFetch(`/exhibiciones/${lan}`)
-  const [year, setYear] = useState(null)
+  const [year, setYear] = useState(0)
 
   useEffect(() => {
     const body = document.querySelector('body')
@@ -17,13 +16,16 @@ const Index = () => {
     return () => body?.classList.remove('bg-secondary')
   }, [])
 
-  useEffect(() => {
-    if (data) {
-      if (data.length > 0) {
-        setYear(data[0].year)
-      }
-    }
-  }, [data])
+  function obtenerAniosUnicos(arrayDeObjetos) {
+    const aniosUnicos = {}
+    arrayDeObjetos.forEach(objeto => {
+      aniosUnicos[objeto.year] = true
+    })
+    return Object.keys(aniosUnicos).map(anio => parseInt(anio))
+  }
+
+  const dataFiltered = loading ? [] : data.filter(item => item.year === year || year === 0)
+  const dataMenuFiltered = loading ? [] : obtenerAniosUnicos(data)
 
   return (
     <Layout>
@@ -33,40 +35,32 @@ const Index = () => {
             <h1 className='font-secondary text-xl lg:text-3xl'>{menu[lan][2].title}</h1>
           </div>
           <div className='pl-6 py-2 w-full flex-1 font-secondary text-sm flex items-center gap-x-3 flex-wrap'>
-            {!loading &&
-              data.map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => setYear(item.year)}
-                  className={`cursor-pointer ${year === item.year ? 'underline' : 'hover:underline'}`}
-                >
-                  {item.year}
-                </button>
-              ))}
+            <button
+              className={`cursor-pointer ${year === 0 ? 'underline' : 'hover:underline'}`}
+              onClick={() => setYear(0)}
+            >
+              Todos
+            </button>
+            {dataMenuFiltered.map((item, index) => (
+              <button
+                key={index}
+                onClick={() => setYear(item)}
+                className={`cursor-pointer ${year === item ? 'underline' : 'hover:underline'}`}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
       </section>
-      {loading ? (
-        <Loader />
-      ) : (
-        data
-          .filter(item => item.year === year)
-          .map(item => (
-            <article
-              key={item.id}
-              className='w-full m-auto max-w-7xl px-6 flex flex-col lg:flex-row text-black'
-            >
-              <div className='lg:w-1/4 pt-6 lg:text-right lg:p-6'>
-                <h2 className='text-primary font-secondary font-medium'>{item.year}</h2>
-                <h3 className='italic font-bold'>{item.title}</h3>
-                <h3>{item.place}</h3>
-              </div>
-              <div className='flex-1 lg:w-3/4 py-6 relative'>
-                <Slider id={item.id} />
-              </div>
-            </article>
-          ))
-      )}
+      <section className='w-full m-auto max-w-7xl px-6 py-12 flex flex-col gap-y-6'>
+        {dataFiltered.map(item => (
+          <Exhibition
+            key={item.id}
+            item={item}
+          />
+        ))}
+      </section>
     </Layout>
   )
 }

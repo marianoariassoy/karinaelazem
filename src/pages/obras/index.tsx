@@ -5,7 +5,6 @@ import Item from './Item'
 import { useDataContext } from '../../context/useDataContext'
 import useFetch from '../../hooks/useFetch'
 import { menu } from '../../components/data'
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 
 const Index = () => {
   const { lan } = useDataContext()
@@ -36,18 +35,14 @@ const Index = () => {
           </div>
         </div>
       </section>
-      <section className='w-full m-auto max-w-7xl px-6 py-12 text-black'>
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-          <Masonry gutter='1rem'>
-            {!loading &&
-              data.map(item => (
-                <Item
-                  key={item.id}
-                  data={item}
-                />
-              ))}
-          </Masonry>
-        </ResponsiveMasonry>
+      <section className='w-full m-auto max-w-7xl px-6 py-12 text-black grid lg:grid-cols-3 gap-6 lg:gap-y-20'>
+        {!loading &&
+          data.map(item => (
+            <Item
+              key={item.id}
+              data={item}
+            />
+          ))}
       </section>
     </Layout>
   )

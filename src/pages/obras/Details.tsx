@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'wouter'
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import Layout from '../../layout/Layout'
 import Title from '../../components/Title'
 import Item from './ItemsDetails'
@@ -67,22 +66,18 @@ const Index = () => {
             </a>
           </Link>
         </div>
-        <div className=' text-black'>
-          <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-            <Masonry gutter='1rem'>
-              {imagesLoading ? (
-                <Loader />
-              ) : (
-                images.map(item => (
-                  <Item
-                    key={item.id}
-                    data={item}
-                    setCurrentImage={setCurrentImage}
-                  />
-                ))
-              )}
-            </Masonry>
-          </ResponsiveMasonry>
+        <div className='text-black grid lg:grid-cols-3 gap-6 lg:gap-y-20'>
+          {imagesLoading ? (
+            <Loader />
+          ) : (
+            images.map(item => (
+              <Item
+                key={item.id}
+                data={item}
+                setCurrentImage={setCurrentImage}
+              />
+            ))
+          )}
         </div>
       </section>
       {currentImage && (
