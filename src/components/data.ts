@@ -36,8 +36,8 @@ export const menu = {
       url: '/statement'
     },
     {
-      title: 'Publicaciones',
-      url: '/publicaciones'
+      title: 'Libros',
+      url: '/libros'
     },
     {
       title: 'Contacto',

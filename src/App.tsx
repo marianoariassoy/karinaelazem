@@ -52,7 +52,7 @@ function App() {
         component={Statement}
       />
       <Route
-        path='/publicaciones'
+        path='/libros'
         component={Publicaciones}
       />
       <Route
