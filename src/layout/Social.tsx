@@ -1,14 +1,10 @@
-import { Instagram, Vimeo } from '../components/icons'
+import { Instagram } from '../components/icons'
 
 const Social = () => {
   const socials = [
     {
-      icon: <Vimeo />,
-      url: 'https://vimeo.com/karina'
-    },
-    {
       icon: <Instagram />,
-      url: 'https://instagram.com/karina'
+      url: 'https://www.instagram.com/karielazem/'
     }
   ]
   return (

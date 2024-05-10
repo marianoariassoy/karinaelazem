@@ -10,14 +10,14 @@ import Statement from './pages/statement'
 import Publicaciones from './pages/publicaciones'
 import Contacto from './pages/contacto'
 import Error from './pages/error'
-import Soon from './Soon'
+// import Soon from './Soon'
 
 function App() {
   return (
     <Switch>
       <Route
         path='/'
-        component={Soon}
+        component={Home}
       />
       <Route
         path='/home'

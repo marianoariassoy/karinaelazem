@@ -21,6 +21,17 @@ const Index = () => {
           <div className='lg:w-1/4'></div>
           <div className='flex-1 py-6 lg:px-6'>
             <Form />
+            <div className='mt-6 text-right'>
+              Diseño:{' '}
+              <a
+                href='https://www.fabianmuggeri.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='hover:underline'
+              >
+                Fabian Muggeri
+              </a>
+            </div>
           </div>
         </div>
       </section>

@@ -18,8 +18,31 @@ const Index = () => {
         pos={0}
         title=''
       />
-      <section className='border-b border-white'>
-        <div className='w-full m-auto max-w-7xl px-6 flex flex-col gap-y-6 lg:flex-row'>
+      <section className='border-b border-white pb-6 my-6'>
+        <div className='w-full m-auto max-w-7xl px-6 grid lg:grid-cols-3 gap-6'>
+          {loading ? (
+            <Loader />
+          ) : (
+            data.map(video => (
+              <article
+                key={video.id}
+                className='flex flex-col gap-3'
+              >
+                <div className='aspect-video'>
+                  <ReactPlayer
+                    width='100%'
+                    height='100%'
+                    url={video.url}
+                  />
+                </div>
+                <div className='font-secondary text-sm'>{video.title}</div>
+              </article>
+            ))
+          )}
+        </div>
+      </section>
+      <section>
+        <div className='w-full m-auto max-w-7xl px-6 flex flex-col lg:flex-row gap-6'>
           <div className='lg:w-1/4'>
             <div className='aspect-[4/5]'>
               <Image
@@ -28,33 +51,7 @@ const Index = () => {
               />
             </div>
           </div>
-          <div className='grid lg:grid-cols-2 gap-3 lg:p-6 flex-1 pb-6'>
-            {loading ? (
-              <Loader />
-            ) : (
-              data.map(video => (
-                <article
-                  key={video.id}
-                  className='flex flex-col gap-3'
-                >
-                  <div className='aspect-video'>
-                    <ReactPlayer
-                      width='100%'
-                      height='100%'
-                      url={video.url}
-                    />
-                  </div>
-                  <div className='font-secondary text-sm'>{video.title}</div>
-                </article>
-              ))
-            )}
-          </div>
-        </div>
-      </section>
-      <section>
-        <div className='w-full m-auto max-w-7xl px-6 flex flex-col lg:flex-row'>
-          <div className='w-1/4'></div>
-          <div className='flex-1 font-secondary text-sm py-6 lg:px-6 whitespace-break-spaces'>
+          <div className='flex-1 font-secondary text-sm whitespace-break-spaces'>
             {loadingTexts ? <Loader /> : <TextHTML text={texts[0].text} />}
           </div>
         </div>
